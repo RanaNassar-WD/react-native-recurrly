@@ -1,5 +1,5 @@
-import { Link } from 'expo-router'
-import { Text, View } from 'react-native'
+import { Link } from "expo-router";
+import { Text, View } from "react-native";
 
 const signUp = () => {
   return (
@@ -9,7 +9,7 @@ const signUp = () => {
         Sign In
       </Link>
     </View>
-  )
-}
+  );
+};
 
-export default signUp
+export default signUp;
