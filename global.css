@@ -266,7 +266,7 @@
   }
 
   .auth-wordmark {
-    @apply text-3xl font-sans-extrabold text-primary;
+    @apply text-3xl font-sans-extrabold text-primary mb-2;
   }
 
   .auth-wordmark-sub {
@@ -299,6 +299,26 @@
 
   .auth-input {
     @apply rounded-2xl border border-border bg-background px-4 py-4 text-base font-sans-medium text-primary;
+  }
+
+  .auth-password-input {
+    @apply flex-row items-center rounded-2xl border border-border bg-background;
+  }
+
+  .auth-password-input-error {
+    @apply border-destructive;
+  }
+
+  .auth-password-text-input {
+    @apply flex-1 border-0 bg-transparent;
+  }
+
+  .auth-password-toggle {
+    @apply px-4 py-4;
+  }
+
+  .auth-password-toggle-text {
+    @apply text-sm font-sans-semibold text-accent;
   }
 
   .auth-input-error {

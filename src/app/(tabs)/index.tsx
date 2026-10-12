@@ -52,6 +52,7 @@ export default function App() {
         </>
       )} data={HOME_SUBSCRIPTIONS} renderItem={({ item }) => <SubscriptionCard {...item} expanded={expandedSubscriptionId === item.id} onPress={() => setExpandedSubscriptionId((currentId) => currentId === item.id ? null : item.id)} />}
         keyExtractor={(item) => item.id}
+        contentContainerClassName="pb-20"
         extraData={expandedSubscriptionId}
         ItemSeparatorComponent={() => <View className="h-4" />}
         ListEmptyComponent={<Text className="home-empty-state"> No subscriptions yet.</Text>}

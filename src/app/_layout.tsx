@@ -1,7 +1,42 @@
+import { ClerkProvider, useAuth } from "@clerk/expo";
+import { tokenCache } from "@clerk/expo/token-cache";
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack } from "expo-router";
+import { router, SplashScreen, Stack, useSegments } from "expo-router";
 import { useEffect } from "react";
+import { ActivityIndicator, View } from "react-native";
 import "../../global.css";
+
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY ?? "";
+
+if (!publishableKey?.startsWith("pk_")) {
+  throw new Error("Set a valid EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your .env file.");
+}
+
+function AppNavigator() {
+  const { isLoaded, isSignedIn } = useAuth();
+  const segments = useSegments();
+  const currentGroup = segments[0];
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    if (isSignedIn && currentGroup === "(auth)") {
+      router.replace("/(tabs)");
+    } else if (!isSignedIn && currentGroup !== "(auth)") {
+      router.replace("/(auth)/signIn");
+    }
+  }, [currentGroup, isLoaded, isSignedIn]);
+
+  if (!isLoaded) {
+    return (
+      <View className="flex-1 items-center justify-center bg-background">
+        <ActivityIndicator color="#ea7a53" />
+      </View>
+    );
+  }
+
+  return <Stack screenOptions={{ headerShown: false }} />;
+}
 
 export default function RootLayout() {
   const [fontLoaded] = useFonts({
@@ -20,5 +55,9 @@ export default function RootLayout() {
   if (!fontLoaded) {
     return null;
   }
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+      <AppNavigator />
+    </ClerkProvider>
+  );
 }
