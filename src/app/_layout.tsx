@@ -1,9 +1,11 @@
-import { ClerkProvider, useAuth } from "@clerk/expo";
+import { ClerkProvider, useAuth, useUser } from "@clerk/expo";
 import { tokenCache } from "@clerk/expo/token-cache";
 import { useFonts } from "expo-font";
 import { router, SplashScreen, Stack, useSegments } from "expo-router";
-import { useEffect } from "react";
+import { PostHogProvider } from "posthog-react-native";
+import { useEffect, useRef } from "react";
 import { ActivityIndicator, View } from "react-native";
+import { posthog } from "../lib/posthog";
 import "../../global.css";
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY ?? "";
@@ -14,8 +16,30 @@ if (!publishableKey?.startsWith("pk_")) {
 
 function AppNavigator() {
   const { isLoaded, isSignedIn } = useAuth();
+  const { user } = useUser();
+  const identifiedUserId = useRef<string | null>(null);
   const segments = useSegments();
   const currentGroup = segments[0];
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    if (!isSignedIn) {
+      identifiedUserId.current = null;
+      return;
+    }
+
+    if (!user || identifiedUserId.current === user.id) return;
+
+    const email = user.primaryEmailAddress?.emailAddress;
+    const properties = {
+      ...(email ? { email } : {}),
+      ...(user.fullName ? { name: user.fullName } : {}),
+    };
+
+    posthog?.identify(user.id, { $set: properties });
+    identifiedUserId.current = user.id;
+  }, [isLoaded, isSignedIn, user]);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -55,9 +79,11 @@ export default function RootLayout() {
   if (!fontLoaded) {
     return null;
   }
+  const app = <AppNavigator />;
+
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
-      <AppNavigator />
+      {posthog ? <PostHogProvider client={posthog}>{app}</PostHogProvider> : app}
     </ClerkProvider>
   );
 }

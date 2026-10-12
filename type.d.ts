@@ -12,9 +12,11 @@ declare global {
     icon: ImageSourcePropType;
   }
 
+  type SubscriptionIconSource = ImageSourcePropType | { kind: "brand"; name: string };
+
   interface Subscription {
     id: string;
-    icon: ImageSourcePropType;
+    icon: SubscriptionIconSource;
     name: string;
     plan?: string;
     category?: string;
@@ -24,6 +26,7 @@ declare global {
     price: number;
     currency?: string;
     billing: string;
+    frequency?: "Monthly" | "Yearly";
     renewalDate?: string;
     color?: string;
   }

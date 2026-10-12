@@ -86,7 +86,7 @@
   }
 
   .home-add-icon {
-    @apply size-8 ml-4 items-center justify-center rounded-full bg-gray-100;
+    @apply ml-4 size-10 items-center justify-center rounded-full bg-gray-100;
   }
 
   .home-balance-card {
@@ -231,6 +231,58 @@
 
   .home-empty-state {
     @apply py-4 text-sm font-sans-medium text-black/60;
+  }
+
+  .subscriptions-screen {
+    @apply flex-1 bg-background px-5 pt-5 p-4;
+  }
+
+  .subscriptions-list-content {
+    @apply pb-28;
+  }
+
+  .subscriptions-header {
+    @apply mb-5 ;
+  }
+
+  .subscriptions-title {
+    @apply text-3xl font-sans-bold text-primary;
+  }
+
+  .subscriptions-subtitle {
+    @apply mt-2 text-sm font-sans-medium text-muted-foreground;
+  }
+
+  .subscriptions-search {
+    @apply mt-5 min-h-14 flex-row items-center gap-3 rounded-2xl border border-border bg-card px-4;
+  }
+
+  .subscriptions-search-input {
+    @apply min-w-0 flex-1 py-3 text-base font-sans-medium text-primary min-h-14;
+  }
+
+  .subscriptions-search-clear {
+    @apply py-2;
+  }
+
+  .subscriptions-search-clear-text {
+    @apply text-sm font-sans-semibold text-accent;
+  }
+
+  .subscriptions-count {
+    @apply mt-5 text-sm font-sans-semibold text-muted-foreground;
+  }
+
+  .subscriptions-empty {
+    @apply items-center py-10;
+  }
+
+  .subscriptions-empty-title {
+    @apply text-base font-sans-bold text-primary;
+  }
+
+  .subscriptions-empty-text {
+    @apply mt-2 text-center text-sm font-sans-medium text-muted-foreground;
   }
 
   .auth-safe-area {

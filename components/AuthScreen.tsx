@@ -3,6 +3,8 @@ import { Link } from "expo-router";
 import { SymbolView } from "expo-symbols";
 import { styled } from "nativewind";
 import { useState } from "react";
+import { posthog } from "../src/lib/posthog";
+import { posthogLogger } from "../src/lib/posthog-logs";
 import {
     ActivityIndicator,
     KeyboardAvoidingView,
@@ -215,12 +217,22 @@ export default function AuthScreen({ mode }: AuthScreenProps) {
 
     const finishSignIn = async () => {
         const { error } = await signIn.finalize();
-        if (error) showRequestError(error, "We couldn't finish signing you in. Please try again.");
+        if (error) {
+            showRequestError(error, "We couldn't finish signing you in. Please try again.");
+            return;
+        }
+        posthog?.capture("sign_in_completed");
+        posthogLogger.info("Sign-in completed");
     };
 
     const finishSignUp = async () => {
         const { error } = await signUp.finalize();
-        if (error) showRequestError(error, "We couldn't finish creating your account. Please try again.");
+        if (error) {
+            showRequestError(error, "We couldn't finish creating your account. Please try again.");
+            return;
+        }
+        posthog?.capture("account_created");
+        posthogLogger.info("Account creation completed");
     };
 
     const beginSecondFactor = async () => {
@@ -379,6 +391,7 @@ export default function AuthScreen({ mode }: AuthScreenProps) {
             showRequestError(result.error, "We couldn't send a recovery code. Please try again.");
             return;
         }
+        posthog?.capture("password_recovery_requested");
         setStep("resetCode");
         setNotice("If an account exists for this email, a recovery code is on its way.");
     };

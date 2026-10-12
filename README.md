@@ -33,6 +33,10 @@ EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your_publishable_key
 
 In the Clerk dashboard, enable the Native API, email sign-up and sign-in, password sign-up, and email verification codes. Email codes are also used for account recovery and device verification. The app stores session tokens with Expo SecureStore; use the production instance key and configure your Clerk production instance before release.
 
+## Subscription brand icons
+
+Subscription brands are matched by name using the CC0-licensed [Iconify SVG Logos set](https://icon-sets.iconify.design/logos/). The Anghami icon is from [Arcticons](https://icon-sets.iconify.design/arcticons/anghami/) by Donnnno, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), and recolored for the app.
+
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
 ## Get a fresh project
