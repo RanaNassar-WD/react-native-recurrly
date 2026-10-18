@@ -242,7 +242,11 @@
   }
 
   .subscriptions-header {
-    @apply mb-5 ;
+    @apply mb-5;
+  }
+
+  .subscriptions-header-row {
+    @apply flex-row items-center justify-between;
   }
 
   .subscriptions-title {

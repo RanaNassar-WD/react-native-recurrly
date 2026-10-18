@@ -1,9 +1,11 @@
+import CreateSubscriptionModal from "@/components/CreateSubscriptionModal";
 import { SymbolView } from "expo-symbols";
 import { styled } from "nativewind";
 import { useMemo, useState } from "react";
-import { FlatList, KeyboardAvoidingView, Platform, Pressable, Text, TextInput, View } from "react-native";
+import { FlatList, Image, KeyboardAvoidingView, Platform, Pressable, Text, TextInput, View } from "react-native";
 import { SafeAreaView as RNSafeAreaView } from "react-native-safe-area-context";
 import SubscriptionCard from "../../../components/SubscriptionCard";
+import { icons } from "../../../constants/icons";
 import { useSubscriptions } from "../../components/SubscriptionContext";
 
 const SafeAreaView = styled(RNSafeAreaView);
@@ -11,7 +13,8 @@ const SafeAreaView = styled(RNSafeAreaView);
 export default function SubscriptionsScreen() {
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedSubscriptionId, setExpandedSubscriptionId] = useState<string | null>(null);
-  const { subscriptions } = useSubscriptions();
+  const { subscriptions, addSubscription } = useSubscriptions();
+  const [isCreateModalVisible, setIsCreateModalVisible] = useState(false);
 
   const filteredSubscriptions = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
@@ -58,7 +61,17 @@ export default function SubscriptionsScreen() {
           showsVerticalScrollIndicator={false}
           ListHeaderComponent={
             <View className="subscriptions-header">
-              <Text className="subscriptions-title">Subscriptions</Text>
+              <View className="subscriptions-header-row">
+                <Text className="subscriptions-title">Subscriptions</Text>
+                <Pressable
+                  accessibilityLabel="Add subscription"
+                  accessibilityRole="button"
+                  className="home-add-icon"
+                  onPress={() => setIsCreateModalVisible(true)}
+                >
+                  <Image source={icons.add} resizeMode="contain" className="size-6" />
+                </Pressable>
+              </View>
               <Text className="subscriptions-subtitle">Search and manage your recurring payments.</Text>
 
               <View className="subscriptions-search">
@@ -100,6 +113,11 @@ export default function SubscriptionsScreen() {
           }
         />
       </KeyboardAvoidingView>
+      <CreateSubscriptionModal
+        visible={isCreateModalVisible}
+        onClose={() => setIsCreateModalVisible(false)}
+        onCreate={addSubscription}
+      />
     </SafeAreaView>
   );
 }
