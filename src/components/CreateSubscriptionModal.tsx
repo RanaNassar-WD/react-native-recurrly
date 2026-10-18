@@ -1,3 +1,4 @@
+import { posthog } from "@/lib/posthog";
 import clsx from "clsx";
 import dayjs from "dayjs";
 import { useState } from "react";
@@ -11,8 +12,8 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { icons } from "../../constants/icons";
 import { getSubscriptionIcon } from "./SubscriptionIcon";
+
 
 const categories = [
   "Entertainment",
@@ -118,6 +119,12 @@ export default function CreateSubscriptionModal({
     };
 
     onCreate(subscription);
+    posthog?.capture("Subscription_Created", {
+      name: name.trim(),
+      price: parsedPrice,
+      frequency,
+      category,
+    });
     resetForm();
     onClose();
   };
