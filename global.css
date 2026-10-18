@@ -285,6 +285,174 @@
     @apply mt-2 text-center text-sm font-sans-medium text-muted-foreground;
   }
 
+  .insights-screen {
+    @apply flex-1 bg-background;
+  }
+
+  .insights-scroll-content {
+    @apply px-4 pb-32 pt-4;
+  }
+
+  .insights-header {
+    @apply mb-6;
+  }
+
+  .insights-title {
+    @apply text-2xl font-sans-bold text-primary;
+  }
+
+  .insights-subtitle {
+    @apply mt-1 text-sm font-sans-medium text-muted-foreground;
+  }
+
+  .insights-section-heading {
+    @apply mb-3 flex-row items-center justify-between;
+  }
+
+  .insights-section-title {
+    @apply text-xl font-sans-bold text-primary;
+  }
+
+  .insights-section-caption {
+    @apply mt-1 text-xs font-sans-medium text-muted-foreground;
+  }
+
+  .insights-view-all {
+    @apply rounded-full border border-black/20 px-4 py-2;
+  }
+
+  .insights-view-all-text {
+    @apply text-sm font-sans-semibold text-primary;
+  }
+
+  .insights-chart-card {
+    @apply mb-4 rounded-2xl bg-muted p-4;
+  }
+
+  .insights-chart-summary {
+    @apply mb-2 flex-row items-center justify-between;
+  }
+
+  .insights-chart-caption {
+    @apply text-sm font-sans-medium text-muted-foreground;
+  }
+
+  .insights-chart-total {
+    @apply text-base font-sans-bold text-primary;
+  }
+
+  .insights-chart {
+    @apply h-52 flex-row;
+  }
+
+  .insights-axis {
+    @apply w-12 justify-between py-2;
+  }
+
+  .insights-axis-label {
+    @apply text-[10px] font-sans-medium text-muted-foreground;
+  }
+
+  .insights-bars {
+    @apply relative min-w-0 flex-1 flex-row items-end pb-6;
+  }
+
+  .insights-grid-line {
+    @apply absolute left-0 right-0 border-b border-dashed border-black/10;
+  }
+
+  .insights-bar-column {
+    @apply relative h-full flex-1 items-center justify-end;
+  }
+
+  .insights-bar {
+    @apply w-3 rounded-full bg-primary;
+  }
+
+  .insights-bar-selected {
+    @apply bg-accent;
+  }
+
+  .insights-tooltip {
+    @apply absolute z-10 rounded-lg bg-card px-2 py-1;
+  }
+
+  .insights-tooltip-text {
+    @apply text-[10px] font-sans-bold text-accent;
+  }
+
+  .insights-day-label {
+    @apply mt-2 text-[11px] font-sans-medium text-primary;
+  }
+
+  .insights-currency-note {
+    @apply mt-3 text-xs font-sans-medium text-muted-foreground;
+  }
+
+  .insights-upcoming-list {
+    @apply mt-3 border-t border-black/10 pt-2;
+  }
+
+  .insights-upcoming-row {
+    @apply flex-row items-center justify-between border-b border-black/5 py-3;
+  }
+
+  .insights-upcoming-copy {
+    @apply min-w-0 flex-1;
+  }
+
+  .insights-upcoming-name {
+    @apply text-sm font-sans-semibold text-primary;
+  }
+
+  .insights-upcoming-date {
+    @apply mt-1 text-xs font-sans-medium text-muted-foreground;
+  }
+
+  .insights-upcoming-amount {
+    @apply ml-3 text-sm font-sans-bold text-primary;
+  }
+
+  .insights-expense-card {
+    @apply mb-8 flex-row items-center justify-between rounded-2xl border border-black/20 bg-card p-4;
+  }
+
+  .insights-expense-copy {
+    @apply min-w-0 flex-1;
+  }
+
+  .insights-expense-title {
+    @apply text-base font-sans-bold text-primary;
+  }
+
+  .insights-expense-caption {
+    @apply mt-1 text-xs font-sans-medium text-muted-foreground;
+  }
+
+  .insights-expense-amount {
+    @apply ml-3 text-lg font-sans-bold text-primary;
+  }
+
+  .insights-history-heading {
+    @apply mb-3;
+  }
+
+  .insights-history-list {
+    @apply gap-3;
+  }
+
+  .insights-empty-card {
+    @apply items-center rounded-2xl border border-border bg-card px-5 py-8;
+  }
+
+  .insights-empty-title {
+    @apply text-base font-sans-bold text-primary;
+  }
+
+  .insights-empty-copy {
+    @apply mt-2 text-center text-sm font-sans-medium text-muted-foreground;
+  }
+
   .auth-safe-area {
     @apply flex-1 bg-background;
   }
